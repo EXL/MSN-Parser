@@ -13,4 +13,4 @@ Simple Motorola Serial Number parser for phone manufacturing date written with u
 
 ## Download
 
-Binary releases (for Windows): https://github.com/EXL/MSN-Parser/releases
+[Binary releases (for Windows)](https://github.com/EXL/MSN-Parser/releases)
