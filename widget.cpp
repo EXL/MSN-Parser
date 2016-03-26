@@ -47,6 +47,7 @@ void Widget::on_radioButton1_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_76_99);
+        ui->lineEdit->clear();
     }
 }
 
@@ -54,6 +55,7 @@ void Widget::on_radioButton2_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_00_23);
+        ui->lineEdit->clear();
     }
 }
 
@@ -61,6 +63,7 @@ void Widget::on_radioButton3_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_24_47);
+        ui->lineEdit->clear();
     }
 }
 
