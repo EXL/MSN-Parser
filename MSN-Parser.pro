@@ -20,3 +20,5 @@ HEADERS  += widget.h
 FORMS    += widget.ui
 
 win32:RC_FILE = MSN-Parser.rc
+
+OTHER_FILES += README.md

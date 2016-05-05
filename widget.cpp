@@ -15,6 +15,8 @@ Widget::Widget(QWidget *parent) :
 
     parser = new MsnParser(this);
 
+    adjustSize();
+
     setFixedSize(size());
 
     checkAndSetDateRange();
