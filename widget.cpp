@@ -4,8 +4,8 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QRegExp>
-
-#include <QDebug>
+#include <QIcon>
+#include <QDate>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -14,34 +14,32 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
 
     parser = new MsnParser(this);
-
-    adjustSize();
-
-    setFixedSize(size());
-
     checkAndSetDateRange();
 
     // MSN RegExp
     QRegExp regExp("^[A-Za-z0-9]{4}[A-Za-z]{2}[A-Za-z0-9]{5}$");
     validator = new QRegExpValidator(regExp, this);
-    // ui->lineEdit->setMaxLength(11);
     ui->lineEdit->setValidator(validator);
+
+    // Window Settings
+    adjustSize();
+    setFixedSize(size());
+    setWindowIcon(QIcon(":/MSN-parser.png"));
 }
 
 void Widget::checkAndSetDateRange()
 {
-    QDateTime _date = QDateTime::currentDateTime();
-    int _year = _date.toString("yyyy").toInt();
-
-    if (_year >= 1976 && _year <= 1999) {
+    int currentYear = QDateTime::currentDateTime().toString("yyyy").toInt();
+    if (currentYear >= 1976 && currentYear <= 1999) {
         ui->radioButton1->setChecked(true);
-    } else if (_year >= 2000 && _year <= 2023) {
+    } else if (currentYear >= 2000 && currentYear <= 2023) {
         ui->radioButton2->setChecked(true);
-    } else if (_year >= 2024 && _year <= 2047) {
+    } else if (currentYear >= 2024 && currentYear <= 2047) {
         ui->radioButton3->setChecked(true);
     } else {
-        QMessageBox::warning(this, tr("Wrong Date!"), tr("Please check Date on your computer.\n"
+        QMessageBox::warning(this, tr("Wrong Date!"), tr("Please check Date and Time on your computer.\n"
                                                          "Please set Date Range manually."));
+        ui->radioButton1->setChecked(true);
     }
 }
 
@@ -49,7 +47,7 @@ void Widget::on_radioButton1_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_76_99);
-        ui->lineEdit->clear();
+        on_lineEdit_textChanged(ui->lineEdit->text());
     }
 }
 
@@ -57,7 +55,7 @@ void Widget::on_radioButton2_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_00_23);
-        ui->lineEdit->clear();
+        on_lineEdit_textChanged(ui->lineEdit->text());
     }
 }
 
@@ -65,7 +63,7 @@ void Widget::on_radioButton3_toggled(bool toggle)
 {
     if (toggle) {
         parser->setDateRange(y_24_47);
-        ui->lineEdit->clear();
+        on_lineEdit_textChanged(ui->lineEdit->text());
     }
 }
 
@@ -112,36 +110,22 @@ void MsnParser::fillTables()
             ++i;
         }
     }
+}
 
-    monthTable << "January" << "February" << "March"
-               << "April" << "May" << "June"
-               << "July" << "August" << "September"
-               << "October" << "November" << "December";
+QString MsnParser::getHalf(bool qHalf) const
+{
+    return (qHalf) ? tr("First half of ") : tr("Last half of ");
 }
 
 QString MsnParser::parseMsn(const QString &msn) const
 {
-    QString answer = "";
-
-    // Month half
-    if (table[msn[5]] % 2 == 0) {
-        answer += tr("First half of ");
-    } else {
-        answer += tr("Last half of ");
-    }
-
-    // Month
-    answer += monthTable[table[msn[5]] / 2];
-
-    // Year
-    answer += " ";
-    answer += QString::number(table[msn[4]] + dateRange);
-    answer += ".";
-
-    return answer;
+    QString answer = QString::number(table[msn[5]] / 2 + 1) + "-";      // Month
+    answer += QString::number(table[msn[4]] + dateRange);               // Year
+    return QDate::fromString(answer, "M-yyyy")                          // Date Format
+            .toString(getHalf(table[msn[5]] % 2 == 0) + "MMMM yyyy");   // For "January" instead "1"
 }
 
 MsnParser::~MsnParser()
 {
-
+    /* Empty destructor */
 }

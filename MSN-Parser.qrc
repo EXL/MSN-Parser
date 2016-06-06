@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MSN-parser.png</file>
+    </qresource>
+</RCC>

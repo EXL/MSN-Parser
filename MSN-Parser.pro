@@ -21,4 +21,6 @@ FORMS    += widget.ui
 
 win32:RC_FILE = MSN-Parser.rc
 
+RESOURCES += MSN-Parser.qrc
+
 OTHER_FILES += README.md

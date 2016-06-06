@@ -48,11 +48,11 @@ class MsnParser : public QObject
 
 private:
     QMap<QChar, int> table;
-    QStringList monthTable;
     int dateRange;
 
 private:
     void fillTables();
+    QString getHalf(bool qHalf) const;
 
 public:
     explicit MsnParser(QObject *parent = 0);
