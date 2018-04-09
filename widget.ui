@@ -2,60 +2,63 @@
 <ui version="4.0">
  <class>Widget</class>
  <widget class="QWidget" name="Widget">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>95</height>
+    <width>369</width>
+    <height>112</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MSN Parser, © EXL</string>
+   <string>MSN Parser</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout1">
-     <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Date Range:</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton1">
-       <property name="text">
-        <string>1976-1999</string>
-       </property>
-      </widget>
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QRadioButton" name="radioButton1">
+         <property name="text">
+          <string>1976-1999</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton2">
+         <property name="text">
+          <string>2000-2023</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton3">
+         <property name="text">
+          <string>2024-2047</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton2">
-       <property name="text">
-        <string>2000-2023</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton3">
-       <property name="text">
-        <string>2024-2047</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout2">
-     <item>
+     <item row="1" column="0">
       <widget class="QLabel" name="label1">
        <property name="text">
-        <string>Please Enter MSN Code:</string>
+        <string>Enter MSN Code:</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="1">
       <widget class="QLineEdit" name="lineEdit">
        <property name="inputMask">
         <string/>
@@ -66,37 +69,52 @@
        <property name="placeholderText">
         <string>Example: D32RFG08Z3</string>
        </property>
-       <property name="clearButtonEnabled">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout3">
-     <item>
+     <item row="2" column="0">
       <widget class="QLabel" name="label2">
        <property name="text">
         <string>Date of Manufacture:</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="2" column="1">
       <widget class="QLabel" name="labelDate">
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Need more characters&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelAbout">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#444444;&quot;&gt;© &lt;/span&gt;&lt;a href=&quot;http://exlmoto.ru&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;EXL&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; color:#444444;&quot;&gt;, v0.2 | 09-APR-2018, &lt;/span&gt;&lt;a href=&quot;https://github.com/EXL/MSN-Parser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/EXL/MSN-Parser&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::RichText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

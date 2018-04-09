@@ -1,7 +1,7 @@
-MSN-Parser
-==============
+MSN Parser
+==========
 
-Simple Motorola Serial Number parser for phone manufacturing date written with using the Qt library
+Simple Motorola Serial Number parser for get the phone manufacturing date written with using the Qt framework.
 
 ## Interface
 

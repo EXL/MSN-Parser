@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+#include <QtGlobal>
+
 #include <QDateTime>
 #include <QMessageBox>
 #include <QRegExp>
@@ -12,6 +14,10 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+    ui->lineEdit->setClearButtonEnabled(true);
+#endif // QT_VERSION
 
     parser = new MsnParser(this);
     checkAndSetDateRange();
