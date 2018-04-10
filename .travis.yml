@@ -1,0 +1,22 @@
+language: cpp
+
+matrix:
+  include:
+    - os: osx
+      compiler: clang
+      osx_image: xcode7.3
+
+script:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then PATH="$(brew --prefix qt)/bin:$PATH" qmake CONFIG+=release MSN-Parser.pro ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then make -j2 > /dev/null ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then ls -al ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then PATH="$(brew --prefix qt)/bin:$PATH" macdeployqt MSN-Parser.app -always-overwrite -dmg ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then curl --upload-file ./MSN-Parser.dmg https://transfer.sh/MSN-Parser.dmg ; fi
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+
+install:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update > /dev/null ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install qt5 ; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link qt5 --force ; fi
