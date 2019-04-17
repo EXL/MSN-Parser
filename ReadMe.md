@@ -29,5 +29,8 @@ Simple Motorola Serial Number parser for get the phone manufacturing date writte
 ### GNOME 3:
 ![GNOME 3](screens/Gnome3.png)
 
+### Haiku:
+![Haiku](screens/Haiku.png)
+
 ## Download
 [Binary releases (for Windows)](https://github.com/EXL/MSN-Parser/releases)
