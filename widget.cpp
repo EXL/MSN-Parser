@@ -86,8 +86,9 @@ void Widget::on_lineEdit_textChanged(const QString &text)
 
 Widget::~Widget()
 {
-    delete parser;
-    delete validator;
+    // Will be deleted on destroying parent object.
+    // delete parser;
+    // delete validator;
     delete ui;
 }
 
